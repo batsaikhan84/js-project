@@ -18,7 +18,8 @@ ActiveRecord::Schema.define(version: 2020_08_11_171411) do
     t.string "category"
     t.date "date"
     t.text "note"
-    t.string "type"
+    t.string "paymentType"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_08_11_171411) do
     t.float "amount"
     t.date "date"
     t.boolean "isSupplement"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

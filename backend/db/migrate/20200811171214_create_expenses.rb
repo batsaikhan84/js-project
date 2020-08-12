@@ -6,7 +6,8 @@ class CreateExpenses < ActiveRecord::Migration[6.0]
       t.string :category
       t.date :date
       t.text :note
-      t.string :type
+      t.string :paymentType
+      t.integer :user_id
 
       t.timestamps
     end

@@ -5,6 +5,7 @@ class CreateIncomes < ActiveRecord::Migration[6.0]
       t.float :amount
       t.date :date
       t.boolean :isSupplement
+      t.integer :user_id
 
       t.timestamps
     end
