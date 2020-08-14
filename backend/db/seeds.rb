@@ -26,7 +26,8 @@ date = [['2020-01-01', '2020-01-31'],
         ['2020-10-01', '2020-10-31'],
         ['2020-11-01', '2020-11-30'],
         ['2020-12-01', '2020-12-31']]
-user_number = 3
+user_number = 2
+expense_number = 8
 
 user_number.times do 
     User.create do |user|
@@ -42,7 +43,7 @@ u = 1
 while u < User.all.length + 1 do
     m = 0
     while m < date.length do
-        10.times do
+        expense_number.times do
             Expense.create do |expense|
                 expense.name = Faker::Lorem.word
                 expense.amount = Faker::Number.decimal(l_digits: 2)

@@ -1,0 +1,22 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body {
+    background-color: azure;
+    background-size: cover;
+  }
+.wrapper {
+    background-color: lightsteelblue;
+}
+.navbar {
+    height: 120px;
+    width: 100%;
+    background-color: powderblue;
+}
+header h2{
+    width: 250px;
+    height: auto;
+    padding: 40px 100px;
+}
+
