@@ -11,18 +11,21 @@
                 <h2>Expense Tracker</h2>
             </header>
             <nav class="navbar">
-                <form class="signInForm">
+                <section id='navbarSection'>
+                    <!-- here goes full name -->
+                </section>
+                <form id="signinForm">
                     <div>
-                        <input type="email" name="email" id="email" placeholder="email">
-                        <input type="password" name="password" id="password" placeholder="password">
-                        <input type="submit" value="Sign in" id="signInButton">
+                        <input type="email" name="email" id="signinEmail" placeholder="email">
+                        <input type="password" name="signinPassword" id="signinPassword" placeholder="password">
+                        <input type="submit" value="Sign in" id="signinButton">
                         <input type="reset" value="Clear">
                     </div>
                 </form>
-                <form class="signUpForm">
+                <form id="signupForm">
                     <div>
-                        <input type="email" name="email" id="email" placeholder="email">
-                        <input type="password" name="password" id="password" placeholder="password">
+                        <input type="email" name="email" id="signupEmail" placeholder="email">
+                        <input type="password" name="signupPassword" id="signupPassword" placeholder="password">
                         <input type="text" name="firstName" id="firstName" placeholder="First Name">
                         <input type="text" name="lastName" id="lastName" placeholder="Last Name">
                         <label for="male">Male</label>
@@ -30,10 +33,17 @@
                         <label for="female">Female</label>
                         <input type="radio" id="female" name="gender" value="female">
                         <input type="number" name="age" id="age" placeholder="Age">
-                        <input type="button" value="Sign up" id="signInButton">
+                        <input type="submit" value="Sign up" id="signupButton">
                         <input type="reset" value="Clear">
                     </div>
                 </form>
+                <div>
+                    <button type="button" name="signupButtonSH" id="signupButtonSH">Sign up</button>
+                </div>
+                <div>
+                    <button type="button" name="signoutButtonSH" id="signoutButtonSH">Sign out</button>
+                </div>
+                
             </nav>
         
             <main>

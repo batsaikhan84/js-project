@@ -32,7 +32,7 @@ expense_number = 8
 user_number.times do 
     User.create do |user|
         user.email = Faker::Internet.email
-        user.password_digest = 'password'
+        user.password = 'password'
         user.firstName = Faker::Name.first_name
         user.lastName = Faker::Name.last_name
         user.gender = Faker::Gender.binary_type
