@@ -6,52 +6,113 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class='wrapper'>
-            <header>
-                <h2>Expense Tracker</h2>
-            </header>
-            <nav class="navbar">
-                <section id='navbarSection'>
-                    <!-- here goes full name -->
-                </section>
-                <form id="signinForm">
-                    <div>
-                        <input type="email" name="email" id="signinEmail" placeholder="email">
-                        <input type="password" name="signinPassword" id="signinPassword" placeholder="password">
-                        <input type="submit" value="Sign in" id="signinButton">
-                        <input type="reset" value="Clear">
-                    </div>
-                </form>
-                <form id="signupForm">
-                    <div>
-                        <input type="email" name="email" id="signupEmail" placeholder="email">
-                        <input type="password" name="signupPassword" id="signupPassword" placeholder="password">
-                        <input type="text" name="firstName" id="firstName" placeholder="First Name">
-                        <input type="text" name="lastName" id="lastName" placeholder="Last Name">
-                        <label for="male">Male</label>
-                        <input type="radio" id="male" name="gender" value="male">
-                        <label for="female">Female</label>
-                        <input type="radio" id="female" name="gender" value="female">
-                        <input type="number" name="age" id="age" placeholder="Age">
-                        <input type="submit" value="Sign up" id="signupButton">
-                        <input type="reset" value="Clear">
-                    </div>
-                </form>
-                <div>
-                    <button type="button" name="signupButtonSH" id="signupButtonSH">Sign up</button>
-                </div>
-                <div>
-                    <button type="button" name="signoutButtonSH" id="signoutButtonSH">Sign out</button>
-                </div>
+        <header>
+            <h2>WELCOME TO MY JS PROJECT</h2>
+        </header>
+        <nav class="navbar">
+            <section id="navbarSection">
+                <!-- here goes user info -->
                 
-            </nav>
-        
-            <main>
-                <!-- here goes -->
-            </main>
+            </section>
+            <form id="signinForm">
+                <input type="email" name="email" id="signinEmail" class="user-form" placeholder="email">
+                <input type="password" name="signinPassword" id="signinPassword" class="user-form" placeholder="password">
+                <button type="submit" id="signinButton" class="form-button">Sign in</button>
+                
+            </form>
+            <div>
+                <button type="submit" name="signoutButtonSH" id="signoutButtonSH">Sign out</button>
+            </div>
+        </nav>
+   
+        <main>
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                       <h1>ENTRY FORM</h1>
+                    </div>
+                    <div class="card-body-income">
+                        <form class="incomeFormCard">
+                            <div class="formFields"><input type="text" name="incomeName" id="incomeName" class="formFieldsProp" placeholder="name"></div> 
+                            <div class="formFields"><input type="number" name="incomeAmount" id="incomeAmount" class="formFieldsProp" min="1" max="100" placeholder="amount"></div> 
+                            <div class="formFields"><input type="date" name="incomeDate" id="incomeDate" class="formFieldsProp" placeholder="date"></div> 
+                            <div class="formFields"><label for="isSupplement">Is this supplement income?</label> <input type="checkbox" name="isSupplement" id="isSupplement" value="true"></div> 
+                            <div class="formFields"><input type="submit" id="incomeSubmit" class="formSubmit" value="enter"></div> 
+                        </form>
+                    </div>
+                    <div class="card-body-expense">
+                        <form class="expenseFormCard">
+                            <div class="formFields"><input type="text" name="expenseName" id="expenseName" class="formFieldsProp" placeholder="name"></div>
+                            <div class="formFields"><input type="number" name="expenseAmount" id="expenseAmount" class="formFieldsProp" min="1" max="100" placeholder="amount"></div>
+                            <div class="formFields"> <select class="formFieldsProp" id="expenseCategory">
+                                <option class="selectCategory" value="select">Select Category:</option>
+                                <option class="home" value="home">Home</option>
+                                <option class="food" value="food">Food</option>
+                                <option class="childcare" value="childcare">ChildCare</option>
+                                <option class="healthcare" value="healthcare">HealthCare</option>
+                                <option class="transportion" value="transportion">Transportation</option>
+                                <option class="personalCare" value="personalCare">Personal Care</option>
+                                <option class="petCare" value="petCare">PetCare</option>
+                                <option class="entertainment" value="entertainment">Entertainment</option>
+                            </select></div>
+                            <div class="formFields"><input type="date" name="expenseDate" id="expenseDate" class="formFieldsProp" placeholder="date"></div>
+                            <div class="formFields"><input type="text" name="expenseNote" id="expenseNote" class="formFieldsProp" placeholder="note"></div>
+                            <div class="formFields"> <label for="cash">Cash</label>
+                                <input type="radio" id="cash" name="paymentType" value="cash">
+                                <label for="creditCard">Credit Card</label>
+                                <input type="radio" id="creditCard" name="paymentType" value="creditCard"></div>
+                            <div class="formFields"><input type="submit" id="expenseSubmit" class="formSubmit" value="enter"></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="cardBody1" class="card-header">
+                        <h1>DETAILS</h1>
+                    </div>
+                    <div id="cardBody2" class="card-body">
+                        <form class="expenseSelection">
+                            <select id="expensePropSelect" name="expensePropSelect">
+                                <option class="select" value='0'>Select Your Option:</option>
+                                <option class="amount" value='amount'>Amount</option>
+                                <option class="category" value='category'>Category</option>
+                                <option class="date" value='date'>Date</option>
+                            </select>
+                            <button type="submit" id="expenseFilterSubmit">Submit</button>
+                        </form>
+                        <div id="filterResult">
 
-
-            <script src="./src/index.js"></script>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h1>VISUALIZATION</h1>
+                    </div>
+                    <div id="cardBody3" class="card-body">
+                        card body
+                    </div>
+                </div>
+           </div>
+        </main>
+        <div id="footer">
+            <div class="signup-left">
+                <form id="signupForm">
+                    <input type="email" name="email" id="signupEmail" class="user-form" placeholder="email">
+                    <input type="password" name="signupPassword" id="signupPassword" class="user-form" placeholder="password">
+                    <input type="text" name="firstName" id="firstName" class="user-form"class="user-form" placeholder="First Name">
+                    <input type="text" name="lastName" id="lastName" class="user-form" placeholder="Last Name">
+                    <input type="number" name="age" id="age" min="1" max="100" class="user-form" placeholder="Age">
+                    <label for="male">Male</label>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="female">Female</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <button type="submit" name="signupButton" id="signupButton" class="form-button">Sign up</button> 
+                </form>
+            </div>
+            <div class="signup-center">
+                <button type="submit" name="signupButtonSH" id="signupButtonSH">Sign up</button>
+            </div>
         </div>
+        <script src="./src/index.js"></script>
     </body>
  </html>
