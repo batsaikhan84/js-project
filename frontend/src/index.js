@@ -205,7 +205,6 @@ const createExpense = (event) => {
 const expenseSubmit = document.getElementById('expenseSubmit')
 expenseSubmit.addEventListener('click', createExpense)
 
-
 const optionSelector = () => {
     let selection = document.getElementById('expensePropSelect')
     for (const option of selection) {
@@ -214,7 +213,6 @@ const optionSelector = () => {
         }
     }
 }
-
 const filter = (event) => {
     event.preventDefault()
     let filterResult = document.getElementById('filterResult')
@@ -231,15 +229,51 @@ const filter = (event) => {
         }
         filterResult.appendChild(ul)
     } else if (optionSelector().value === 'date') {
-        let sortedDateObj = []
-        sortedDateObj = current_user.expenses.sort(function(a, b) {return a.date - b.date})
-        for (obj of sortedDateObj) {
-            let li = document.createElement('li')
-            li.innerText = `${obj.name} - ${obj.date}`
-            console.log(li)
-            ul.appendChild(li)
+        sortedDateObj = current_user.expenses.sort((a, b) => a.date.localeCompare(b.date))
+        let year = []
+        let uniqMonth = []
+        let result = []
+        let month = [{'01': "January"},{'02': "February"},{'03':"March"},{'04': "April"},{'05': "May"},{'06': "June"},{'07': "July"},{'08': "August"},{'09': "September"},{'10': "October"},{'11': "November"},{'12': "December"}]
+        const findUniqYear = (sortedDateObj) => {
+            let temp = []
+            for (const e of sortedDateObj) {
+                temp.push(e.date.split("-")[0])
+            }
+            for (const e of temp) {
+                if (year.length === 0) {
+                    year.push(e)
+                }
+                if (typeof year.find(n => n === e) === 'undefined') {
+                    year.push(e)
+                }
+            }
         }
-        filterResult.appendChild(ul)
+        const filterDate = (callback) => {
+            callback
+            for (const e of month) {
+                uniqMonth.push(Object.keys(e)[0])
+            }
+            for (const e of year) {
+                let h3Year = document.createElement('h3')
+                h3Year.innerText = e
+                filterResult.appendChild(h3Year)
+                for (const e of uniqMonth) {
+                    result.push(sortedDateObj.filter(n => n.date.split("-")[1] === e))
+                }
+            }
+            for (const e of result) {
+                let num = e[0].date.split('-')[1]
+                let monthName = Object.values(month.find(n => Object.keys(n)[0] === num))[0]
+                let totalAmount = e.reduce((total, number) => total + number.amount, 0).toFixed(2)
+                let li = document.createElement('li')
+                li.innerText = `${monthName} - ${totalAmount}`
+                ul.appendChild(li)
+            }
+            filterResult.appendChild(ul)
+        }
+        filterDate(findUniqYear(sortedDateObj))
+
+
     } else if (optionSelector().value === 'category') {
         let uniqCategory = []
         let result = []
