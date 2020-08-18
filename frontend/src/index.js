@@ -224,7 +224,6 @@ const filter = (event) => {
         for (obj of sortedObj) {
             let li = document.createElement('li')
             li.innerText = `${obj.name} - ${obj.amount}`
-            console.log(li)
             ul.appendChild(li)
         }
         filterResult.appendChild(ul)
@@ -233,7 +232,10 @@ const filter = (event) => {
         let year = []
         let uniqMonth = []
         let result = []
+        let monthNameChart = []
+        let totalAmountChart = []
         let month = [{'01': "January"},{'02': "February"},{'03':"March"},{'04': "April"},{'05': "May"},{'06': "June"},{'07': "July"},{'08': "August"},{'09': "September"},{'10': "October"},{'11': "November"},{'12': "December"}]
+
         const findUniqYear = (sortedDateObj) => {
             let temp = []
             for (const e of sortedDateObj) {
@@ -264,16 +266,54 @@ const filter = (event) => {
             for (const e of result) {
                 let num = e[0].date.split('-')[1]
                 let monthName = Object.values(month.find(n => Object.keys(n)[0] === num))[0]
+                monthNameChart.push(monthName)
                 let totalAmount = e.reduce((total, number) => total + number.amount, 0).toFixed(2)
+                totalAmountChart.push(totalAmount)
                 let li = document.createElement('li')
                 li.innerText = `${monthName} - ${totalAmount}`
                 ul.appendChild(li)
             }
             filterResult.appendChild(ul)
         }
+        const dateChart = (label, data1, data2) => {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+
+            // The data for our dataset
+            data: {
+                labels: label,
+                datasets: [{
+                    label: 'Expense',
+                    backgroundColor: '',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: data1
+                }, {
+                    label: 'Income',
+                    backgroundColor: '',
+                    borderColor: 'rgb(126, 172, 224)',
+                    data: data2
+                }]
+            },
+
+                // Configuration options go here
+                options: {}
+            });
+        }
+        const totalIncome = () => {
+            let groupedIncome = []
+            let total = []
+            for (const e of uniqMonth) {
+                groupedIncome.push(current_user.incomes.filter(n => n.date.split("-")[1] === e))
+            }
+            for (const e of groupedIncome) {
+                total.push(e.reduce((a, b) => a + b.amount, 0))
+            }
+            return total
+        }
         filterDate(findUniqYear(sortedDateObj))
-
-
+        dateChart(monthNameChart, totalAmountChart,  totalIncome())
     } else if (optionSelector().value === 'category') {
         let uniqCategory = []
         let result = []
@@ -303,7 +343,6 @@ const filter = (event) => {
             for (e of result) {
                 let li = document.createElement('li')
                 li.innerText = `${e[0].category} - ${e.reduce((total, e) => total + e.amount, 0).toFixed(2)}`
-                console.log(li)
                 ul.appendChild(li)
                 }
             filterResult.appendChild(ul) 

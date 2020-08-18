@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_08_11_171411) do
     t.string "name"
     t.float "amount"
     t.date "date"
-    t.boolean "isSupplement"
+    t.boolean "isSupplement", default: false
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

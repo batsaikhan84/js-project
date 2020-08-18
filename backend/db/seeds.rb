@@ -65,13 +65,12 @@ while j < User.all.length + 1 do
         incomeType.each do |e|
             Income.create do |income|
                 income.name = e
-                if e == 'salary'
-                    income.isSupplement = false
+                if income.name == 'salary'
                     income.amount = Faker::Number.between(from: 4000, to: 6000)
-                elsif e == 'bonus'
+                elsif income.name == 'bonus'
                     income.isSupplement = true
                     income.amount = Faker::Number.between(from: 0, to: 500)
-                elsif e == 'sideIncome'
+                elsif income.name == 'sideIncome'
                     income.isSupplement = true
                     income.amount = Faker::Number.between(from: 0, to: 300)
                 end
