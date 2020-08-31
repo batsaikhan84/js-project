@@ -7,10 +7,6 @@ const SIGNOUT_URL = `${BASE_URL}/signout`
 const CURRENT_USER_URL = `${BASE_URL}/current_user`
 
 let current_user = {}
-let signinFormSH
-let signupFormSH
-let signupButtonSH
-let signoutButtonSH
 
 const displayFullName = (obj) => {
     let navbarSection = document.getElementById('navbarSection')
@@ -32,6 +28,8 @@ const userSignedOut = () => {
     signoutButtonSH = document.getElementById('signoutButtonSH').style.display='none'
     signupFormSH = document.getElementById('signupForm').style.display='none'
     document.querySelector('section').innerText=''
+    document.getElementById('cardBody3').innerHTML = ''
+    document.getElementById('filterResult').innerHTML=''
     document.getElementById('signinForm').reset()
     current_user = {}
 }
@@ -60,7 +58,6 @@ const userSignin = (event) => {
 }
 const clickSignUpButton = (event) => {
     event.preventDefault();
-    // signinFormSH = document.getElementById('signinForm').style.display='none'
     signupFormSH = document.getElementById('signupForm').style.display='block'
     signupButtonSH = document.getElementById('signupButtonSH').style.display='none'
 
@@ -158,7 +155,12 @@ const createIncome = (event) => {
     }
     fetch(INCOME_URL, configObj)
     .then(response => response.json())
-    .then(obj => console.log(obj))
+    .then(obj => {
+        console.log(obj)
+        if (typeof obj !== 'undefined') {
+            document.querySelector('.incomeFormCard').reset()
+        }
+    })
 }
 const incomeSubmit = document.getElementById('incomeSubmit')
 incomeSubmit.addEventListener('click', createIncome)
@@ -200,7 +202,12 @@ const createExpense = (event) => {
     }
     fetch(EXPENSE_URL, configObj)
     .then(response => response.json())
-    .then(obj => console.log(obj))
+    .then(obj => {
+        console.log(obj)
+        if (typeof obj !== 'undefined') {
+            document.querySelector('.expenseFormCard').reset()
+        }
+    })
 }
 const expenseSubmit = document.getElementById('expenseSubmit')
 expenseSubmit.addEventListener('click', createExpense)
@@ -216,7 +223,7 @@ const optionSelector = () => {
 const filter = (event) => {
     event.preventDefault()
     let filterResult = document.getElementById('filterResult')
-    filterResult.innerHTML = ""
+    filterResult.innerHTML = ''
     let ul = document.createElement('ul')
     if (optionSelector().value === 'amount') {
         let sortedObj = []
@@ -276,8 +283,8 @@ const filter = (event) => {
             filterResult.appendChild(ul)
         }
         const dateChart = (label, data1, data2) => {
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var chart = new Chart(ctx, {
+            let ctx = document.getElementById('myChart').getContext('2d');
+            let chart = new Chart(ctx, {
             // The type of chart we want to create
             type: 'line',
 
@@ -332,12 +339,13 @@ const filter = (event) => {
                 }
             }
         }
-        const filterCategory = (orderedCategory, callback) => {
+        const newLocal = (orderedCategory, callback) => {
             callback
             for (const e of uniqCategory) {
                 result.push(orderedCategory.filter(n => n.category === e))
             }
         }
+        const filterCategory = newLocal
         const totalByCategory = (callback) => {
             callback
             for (e of result) {
