@@ -60,38 +60,32 @@ const clickSignUpButton = (event) => {
     event.preventDefault();
     signupFormSH = document.getElementById('signupForm').style.display='block'
     signupButtonSH = document.getElementById('signupButtonSH').style.display='none'
-
 }
-const userSignup = () => {
-    event.preventDefault();
-    const getGender = () => {
-        let gender = document.getElementsByName('gender')
-        for (let i=0; i<gender.length; i++ ) {
-            if (gender[i].checked) {
-                console.log(gender[i].value)
-                return gender[i].value
+
+class CreateUser {
+    constructor(url) {
+        this.url = url
+        this.formData = {
+            email: document.getElementById('signupEmail').value,
+            password: document.getElementById('signupPassword').value,
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            gender: this.gender(),
+            age: document.getElementById('age').value
+            }
+        this.configObj = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                    },
+                body: JSON.stringify(this.formData)
             }
         }
-    }
-    let formData = {
-        email: document.getElementById('signupEmail').value,
-        password: document.getElementById('signupPassword').value,
-        firstName: document.getElementById('firstName').value,
-        lastName: document.getElementById('lastName').value,
-        gender: getGender(),
-        age: document.getElementById('age').value
-    }
-    let configObj = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    }
-    fetch(USER_URL, configObj)
-    .then(response => response.json())
-    .then(obj => { console.log(obj)
+    fetch() {
+        fetch(this.url, this.configObj)
+        .then(response => response.json())
+        .then(obj => { console.log(obj)
         if (obj.message === undefined) {
             displayFullName(obj)
             signinFormSH = document.getElementById('signinForm').style.display='none'
@@ -99,8 +93,63 @@ const userSignup = () => {
             signoutButtonSH = document.getElementById('signoutButtonSH').style.display='block'
             signupFormSH = document.getElementById('signupForm').style.display='none'
             }
-    })
-}
+        })
+    }
+    gender() {
+        let gender = document.getElementsByName('gender')
+            for (let i=0; i<gender.length; i++ ) {
+                if (gender[i].checked) {
+                    return gender[i].value
+                }
+            }
+        }
+    }
+const signupForm = document.getElementById('signupButton')
+signupForm.addEventListener('click', () => {
+    event.preventDefault()
+    let newUser = new CreateUser(USER_URL)
+    newUser.fetch()
+})
+
+// const userSignup = () => {
+//     event.preventDefault();
+//     const getGender = () => {
+//         let gender = document.getElementsByName('gender')
+//         for (let i=0; i<gender.length; i++ ) {
+//             if (gender[i].checked) {
+//                 console.log(gender[i].value)
+//                 return gender[i].value
+//             }
+//         }
+//     }
+//     let formData = {
+//         email: document.getElementById('signupEmail').value,
+//         password: document.getElementById('signupPassword').value,
+//         firstName: document.getElementById('firstName').value,
+//         lastName: document.getElementById('lastName').value,
+//         gender: getGender(),
+//         age: document.getElementById('age').value
+//     }
+//     let configObj = {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Accept': 'application/json'
+//         },
+//         body: JSON.stringify(formData)
+//     }
+//     fetch(USER_URL, configObj)
+//     .then(response => response.json())
+//     .then(obj => { console.log(obj)
+//         if (obj.message === undefined) {
+//             displayFullName(obj)
+//             signinFormSH = document.getElementById('signinForm').style.display='none'
+//             signupButtonSH = document.getElementById('signupButtonSH').style.display='none'
+//             signoutButtonSH = document.getElementById('signoutButtonSH').style.display='block'
+//             signupFormSH = document.getElementById('signupForm').style.display='none'
+//             }
+//     })
+// }
 const userSignout = (event) => {
     event.preventDefault()
     fetch(SIGNOUT_URL)
@@ -132,8 +181,6 @@ const signupButton = document.getElementById('signupButtonSH')
 signupButton.addEventListener('click', clickSignUpButton)
 const signoutButton = document.getElementById('signoutButtonSH')
 signoutButton.addEventListener('click', userSignout)
-const signupForm = document.getElementById('signupButton')
-signupForm.addEventListener('click', userSignup)
 
 
 const createIncome = (event) => {
@@ -360,5 +407,3 @@ const filter = (event) => {
 }
 const expenseFilterSubmit = document.getElementById('expenseFilterSubmit')
 expenseFilterSubmit.addEventListener('click', filter)
-
-
