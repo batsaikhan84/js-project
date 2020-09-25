@@ -1,23 +1,10 @@
-User Table
-Email
-Password
-First Name
-Last Name
-Gender
-Age
+# Javascript Project
 
-Expense Table
-Name
-Amount
-Category
-Date
-Note
-Type(cash or credit card)
+This project is built for tracking user expenses and income. Based on the information the user entered, the application is able to provide some useful insight as well as it can visualize user data. Users can enter their data into a database by utilizing two forms: income and expenses. Users can save the data into a database through these forms. This application's backend is powered by Rails. It uses SQLite for its database. In order to effectively manage user data, databases are divided into three tables: user, expense, income. 
 
-Income Table
-Name
-Amount
-Date
-isSupplement (true or false)
+# Installation
 
-On this page, it includes user name and date. There are two types of graphs will be present. One shows the last 6 months of a comparison between income and expenses. The other will be about all the categories and its spending amounts. Users can enter expenses one by one while it checks if they spend cash or credit card. Also, they need to choose a date of spending and categories. 
+Run bundle install command in backend directory and npm install command in frontend directory to get started with the application. Npm start command will start the frontend application. It will automatically open at http://localhost:3000. Due to port 3000 being used for frontend, port 3001 may be used for backend applications to run. In order to accomplish it, type 'rails s -p 3001' in the command line. It is necessary to run migration after cloning the application to a local machine.
+
+
+ 
