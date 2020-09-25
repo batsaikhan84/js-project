@@ -23,12 +23,12 @@ Please cd into backend directory to run bundle install. In order to avoid confli
 ```shell
 rails s -p 3001
 ```
-Please cd into frontend directory to get started with the frontend appliation. The first, install all the dependencies by running the code above.
+Please cd into frontend directory to get started with the frontend appliation. The first, install all the dependencies by running command above - 'npm install.'
 
 ```shell
 npm start
 ```
-This command will start the frontend application. It will automatically open at http://localhost:3000.
+This command will start the frontend application. It automatically opens at http://localhost:3000.
 
 ### Initialize the database
 ```shell
@@ -41,7 +41,7 @@ ruby -v
 ```
 Version `ruby 2.6.2`
 
-Does not match Ruby version? Please install the right ruby version:
+please install the ruby version 2.6.2 if it is different:
 
 ```shell
 rbenv install 2.6.2
