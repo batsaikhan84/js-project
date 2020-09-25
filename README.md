@@ -23,12 +23,12 @@ Please cd into backend directory to run bundle install. In order to avoid confli
 ```shell
 rails s -p 3001
 ```
-Please cd into frontend directory to get started with the frontend appliation. The first, install all the dependencies by running the following code.
+Please cd into frontend directory to get started with the frontend appliation. The first, install all the dependencies by running the code above.
 
 ```shell
 npm start
 ```
-command will start the frontend application. It will automatically open at http://localhost:3000.
+This command will start the frontend application. It will automatically open at http://localhost:3000.
 
 ### Initialize the database
 ```shell
